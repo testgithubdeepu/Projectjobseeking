@@ -1,0 +1,62 @@
+/* Online Java Compiler and Editor */
+/* Online Java Compiler and Editor */
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+ class Job implements Comparable<Job> {
+	    int startTime;
+	    int endTime;
+	    int profit;
+
+	    public Job(int startTime, int endTime, int profit) {
+	        this.startTime = startTime;
+	        this.endTime = endTime;
+	        this.profit = profit;
+	    }
+	    public int compareTo(Job x) {
+	        return this.endTime -x.endTime;
+	    }
+		
+	}
+public class JobSelection {
+
+	    public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+	        System.out.println("Enter the number of Jobs");
+	        int n = sc.nextInt();
+	        ArrayList<Job> jobs = new ArrayList<Job>();
+	        System.out.println("enter job start time,end time,and earnngs");
+	        for (int i = 0; i < n; i++) {
+	            int startTime = sc.nextInt();
+	            int endTime = sc.nextInt();
+	            int profit = sc.nextInt();
+	            jobs.add(new Job(startTime, endTime, profit));
+	        }
+	        Collections.sort(jobs);
+	        int lokeshEndTime = 0;
+	        int lokeshProfit = 0;
+	        int otherJobs = 0;
+	        int otherProfit = 0;
+	        for (Job job : jobs) {
+	            if (job.startTime >= lokeshEndTime) {
+	                
+	                lokeshEndTime = job.endTime;
+	                lokeshProfit += job.profit;
+	            } else {
+	                
+	                otherJobs++;
+	                otherProfit += job.profit;
+	            }
+	        }
+
+	        
+	        System.out.println("The number of tasks and earnings available for others:");
+	        System.out.println("Task: " + otherJobs);
+	        System.out.println("Earnings: " + otherProfit);
+
+	       
+	    }
+	}
+	
